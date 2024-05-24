@@ -1,0 +1,48 @@
+; rasim
+; http://www.autoitscript.com/forum/topic/85094-7zip/
+#include <7Zip.au3>
+
+; Пример 1
+$ArcFile = FileSaveDialog("Создать новый архив", "", "Архивы (*.7z;*.zip;*.gzip;*.bzip2;*.tar)")
+If @error Then Exit
+
+$FileName = FileSelectFolder("Выберите каталог", "")
+If @error Then Exit
+
+$retResult = _7ZipAdd(0, $ArcFile, $FileName)
+If @error Then
+	MsgBox(64, "_7ZipAdd", "Ошибка")
+Else
+	MsgBox(64, "_7ZipAdd", "Архив создан успешно" & @LF & $retResult)
+EndIf
+
+; Пример 2
+$ArcFile = FileSaveDialog("Создать новый архив", "", "Архивы (*.7z;*.zip;*.gzip;*.bzip2;*.tar)")
+If @error Then Exit
+
+$FileName = FileOpenDialog("Выберите файл", "", "All (*.*)")
+If @error Then Exit
+
+$retResult = _7ZipAdd(0, $ArcFile, $FileName)
+If @error Then
+	MsgBox(64, "_7ZipAdd", "Ошибка")
+Else
+	MsgBox(64, "_7ZipAdd", "Архив создан успешно" & @LF & $retResult)
+EndIf
+
+; Пример 3
+$ArcFile = FileSaveDialog("Создать новый архив", "", "Архивы (*.7z;*.zip;*.gzip;*.bzip2;*.tar)")
+If @error Then Exit
+
+$FileName = FileSelectFolder("Выберите каталог", "")
+If @error Then Exit
+
+$sInclude = "c:\Program Files\AutoIt3\Examples\GUI\*.*"
+$sExclude = "c:\Program Files\AutoIt3\Examples\GUI\*.au3"
+
+$retResult = _7ZipAdd(0, $ArcFile, $FileName, 0, 5, 1, $sInclude, $sExclude)
+If @error Then
+	MsgBox(64, "_7ZipAdd", "Ошибка")
+Else
+	MsgBox(64, "_7ZipAdd", "Архив создан успешно" & @LF & $retResult)
+EndIf

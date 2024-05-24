@@ -1,0 +1,45 @@
+#cs ----------------------------------------------------------------------------
+
+ AutoIt Version: 3.3.14.5
+ Author:         myName
+
+ Script Function:
+	Template AutoIt script.
+
+#ce ----------------------------------------------------------------------------
+
+; Script Start - Add your code below here
+#include <GUIConstantsEx.au3>
+
+#include <GUIConstantsEx.au3>
+
+Opt("GUIOnEventMode", 1)  ; Включает режим OnEvent
+$mainwindow = GUICreate("Привет мир", 300, 100)
+GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
+GUICtrlCreateLabel("Привет мир! Как дела?", 30, 10)
+$okbutton = GUICtrlCreateButton("OK", 70, 50, 60)
+GUICtrlSetOnEvent($okbutton, "OKButton")
+
+$dummywindow = GUICreate("Пустое окно для теста ", 200, 100)
+GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
+
+GUISwitch($mainwindow)
+GUISetState(@SW_SHOW)
+
+While 1
+  Sleep(1000)  ; Цикл ожидания
+WEnd
+
+Func OKButton()
+  ;Примечание: в этом месте @GUI_CtrlId равен $okbutton,
+  MsgBox(0, "GUI Event", "Вы нажали OK!")
+EndFunc
+
+Func CLOSEClicked()
+  ;Примечание: в этом месте @GUI_CtrlId равен $GUI_EVENT_CLOSE,
+  ;@GUI_WinHandle может быть либо $mainwindow, либо $dummywindow
+  If @GUI_WinHandle = $mainwindow Then
+    MsgBox(0, "GUI Event", "Вы нажали CLOSE в основном окне! Завершаем...")
+    Exit
+  EndIf
+EndFunc
