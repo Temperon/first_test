@@ -33,5 +33,6 @@
           </p>
         </section>
       </main>
+<h1><?php echo "Hello"; ?></h1>
 </body>
 </html>
