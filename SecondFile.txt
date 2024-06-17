@@ -3,3 +3,5 @@ second file
 added new line
 
 added next new line
+
+added next new line
